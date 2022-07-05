@@ -1,0 +1,1 @@
+This is repository for my database exercises for the Data Science program at Codeup.
