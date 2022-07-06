@@ -88,11 +88,52 @@ HAVING duplicates > 1;
 	-- Using the dept_emp table, count how many current employees work in each department. 
     -- The query result should show 9 rows, one for each department and the employee count.
     
-    
+    SELECT COUNT(emp_no) AS num_emp, to_date
+    FROM dept_emp
+    WHERE to_date = "9999-01-01"
+    GROUP BY dept_no, to_date;
     
 	-- Determine how many different salaries each employee has had. This includes both historic and current.
+    
+    SELECT emp_no, COUNT(salary) AS num_salary_change
+    FROM salaries
+    GROUP BY emp_no
+    LIMIT 50;
+    
 	-- Find the maximum salary for each employee.
+    
+    SELECT emp_no, MAX(salary)
+    FROM salaries
+    GROUP BY emp_no
+    LIMIT 50;
+    
 	-- Find the minimum salary for each employee.
+    
+    SELECT emp_no, MIN(salary)
+    FROM salaries
+    GROUP BY emp_no
+    LIMIT 50;
+    
 	-- Find the standard deviation of salaries for each employee.
+    
+    SELECT emp_no, ROUND(STDDEV(salary), 2) AS sd_salary
+    FROM salaries
+    GROUP BY emp_no
+    LIMIT 50;
+    
 	-- Now find the max salary for each employee where that max salary is greater than $150,000.
+    
+	SELECT emp_no, MAX(salary)
+    FROM salaries
+    WHERE salary > 150000
+    GROUP BY emp_no
+    LIMIT 50;
+    
 	-- Find the average salary for each employee where that average salary is between $80k and $90k.
+    
+    SELECT emp_no, ROUND(AVG(salary), 2)
+    FROM salaries
+    WHERE salary BETWEEN 80000 AND 90000
+    GROUP BY emp_no
+    LIMIT 100;
+    
